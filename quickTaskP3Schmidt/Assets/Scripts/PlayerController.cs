@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -8,12 +9,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float speed = 2.0f;
+    public float speed = 5.0f;
     public static bool gameOver;
     // Start is called before the first frame update
     void Start()
     {
+        Console.WriteLine(2 + 2);
         gameOver = false;
+        
     }
 
     // Update is called once per frame
@@ -37,16 +40,13 @@ public class PlayerController : MonoBehaviour
         if (gameOver)
         {
             Time.timeScale = 0;
-            System.Console.WriteLine("The Game is Over");
+            Console.WriteLine("The Game is Over");
         }
+    }
 
+    public static void OnCollisionEnter(Collision collision)
+    {
+        PlayerController.gameOver = true;
 
-        private static void OnControllerColliderHit(ControllerColliderHit hit)
-        {
-            if (hit.transform.tag == "Finish")
-            {
-                PlayerController.gameOver = true;
-            }
-        }
     }
 }
